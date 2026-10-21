@@ -1,0 +1,20 @@
+node_modules/
+.env
+.env.*
+!.env.example
+npm-debug.log*
+.expo/
+dist/
+web-build/
+
+# Secrets and private data - never publish these
+backend/ALL_LOGINS*
+backend/CampusEase_All_Logins.md
+CampusEase_All_Logins.md
+backend/ALL_LOGINS.pdf
+backend/backups/
+backend/uploads/
+backend/scripts/.usnBackup.json
+backend/scripts/.facultyBackup.json
+backend/faculty-section-plan.csv
+*.pdf
