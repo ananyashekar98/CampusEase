@@ -9,6 +9,7 @@ import {
   Text,
   TextInput,
   View,
+  useWindowDimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -30,6 +31,9 @@ import { showAlert, showConfirm } from '../utils/alert';
 
 export default function StaffroomLocationsScreen({ navigation }) {
   const { colors, shadow } = useTheme();
+  // Phones are too narrow for two columns, so they stack one under the other.
+  const { width: screenWidth } = useWindowDimensions();
+  const isNarrow = screenWidth < 760;
   const styles = useMemo(() => createStyles(colors, shadow), [colors, shadow]);
   const ROLE_ACCENT = { student: colors.student, faculty: colors.faculty, admin: colors.admin };
   const { user, updateUser } = useAuth();
@@ -409,9 +413,9 @@ export default function StaffroomLocationsScreen({ navigation }) {
           // Two side-by-side columns: staffrooms on the left, faculty
           // availability on the right — each its own plain one-by-one list,
           // not a card grid.
-          <View style={styles.twoColumnRow}>
-            <View style={[styles.section, styles.column]}>{staffroomSectionContent}</View>
-            <View style={[styles.section, styles.column]}>{facultyLocatorContent}</View>
+          <View style={isNarrow ? styles.stackedRow : styles.twoColumnRow}>
+            <View style={[styles.section, isNarrow ? styles.fullWidth : styles.column]}>{staffroomSectionContent}</View>
+            <View style={[styles.section, isNarrow ? styles.fullWidth : styles.column]}>{facultyLocatorContent}</View>
           </View>
         ) : (
           <View style={styles.section}>{facultyLocatorContent}</View>
@@ -498,6 +502,8 @@ const createStyles = (colors, shadow) => StyleSheet.create({
   statusLabel: { ...typography.body, fontWeight: '700', color: colors.textPrimary },
   twoColumnRow: { flexDirection: 'row', alignItems: 'flex-start', gap: spacing.lg },
   column: { flex: 1 },
+  stackedRow: { flexDirection: 'column', gap: spacing.md },
+  fullWidth: { width: '100%' },
   listRow: {
     flexDirection: 'row',
     alignItems: 'center',
