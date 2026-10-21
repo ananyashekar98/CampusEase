@@ -33,7 +33,7 @@ function AdminAllBookingsScreenInner({ navigation }) {
   const accent = colors.admin;
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState('pending');
   const [search, setSearch] = useState('');
   const [bookings, setBookings] = useState([]);
   // Which booking is mid-cancel right now — disables just that card's
@@ -196,7 +196,7 @@ function AdminAllBookingsScreenInner({ navigation }) {
 
   return (
     <SafeAreaView style={styles.flex} edges={['top', 'bottom']}>
-      <ScreenHeader title="All Bookings" onBack={() => navigation.goBack()} accentColor={accent} />
+      <ScreenHeader title="Booking Requests" onBack={() => navigation.goBack()} accentColor={accent} />
       <View style={styles.filterRow}>
         <TextInput
           style={styles.search}

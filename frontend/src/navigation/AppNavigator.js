@@ -18,7 +18,6 @@ import TimetableScreen from '../screens/TimetableScreen';
 import AdminTimetableScreen from '../screens/AdminTimetableScreen';
 import BookClassroomScreen from '../screens/BookClassroomScreen';
 import MyBookingsScreen from '../screens/MyBookingsScreen';
-import AdminBookingRequestsScreen from '../screens/AdminBookingRequestsScreen';
 import AdminAllBookingsScreen from '../screens/AdminAllBookingsScreen';
 import AdminAutoAllocatorScreen from '../screens/AdminAutoAllocatorScreen';
 import AdminBulkImportScreen from '../screens/AdminBulkImportScreen';
@@ -75,10 +74,7 @@ export default function AppNavigator() {
               <Stack.Screen name="MyBookings" component={MyBookingsScreen} />
             )}
             {user.role === 'admin' && (
-              <Stack.Screen name="AdminBookingRequests" component={AdminBookingRequestsScreen} />
-            )}
-            {user.role === 'admin' && (
-              <Stack.Screen name="AdminAllBookings" component={AdminAllBookingsScreen} />
+              <Stack.Screen name="AdminBookingRequests" component={AdminAllBookingsScreen} />
             )}
             {/* "StudentBookings" removed — approved one-off bookings now show up
                 as "Extra Class Added"/"Extra Class Cancelled" notifications

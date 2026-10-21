@@ -41,7 +41,6 @@ export default function AdminHomeScreen({ navigation }) {
       items: [
         { key: 'directbooking', icon: 'business-outline', label: 'Admin Direct Booking', tint: colors.tint4, onPress: () => navigation.navigate('BookClassroom') },
         { key: 'requests', icon: 'mail-open-outline', label: 'Booking Requests', tint: colors.tint2, onPress: () => navigation.navigate('AdminBookingRequests') },
-        { key: 'allbookings', icon: 'reader-outline', label: 'All Bookings', tint: colors.tint3, onPress: () => navigation.navigate('AdminAllBookings') },
       ],
     },
     ...(isMainAdmin ? [{
